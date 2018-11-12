@@ -1,0 +1,31 @@
+
+* Overwiew
+  [EmailSec](https://github.com/softsky/emailsec) Is a Email Security service for fast notification if person's email is compromised.
+
+
+
+* Components
+** Webiste
+** Business Logic
+** Database
+
+#+end_src#+begin_src plantuml :file ./Resources/SystemDeployment.png
+cloud "Website" {
+node "Website1" as W1 {
+}
+node "Website2" as W2 {
+}
+node "Website3" as W3 {
+}
+}
+}
+
+cloud "BusinessLogic" {
+
+}
+
+TB --> EB1
+TB --> EB2
+TB --> EB3
+TB --> EBN
+#+end_src
