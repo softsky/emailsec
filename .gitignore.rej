@@ -1,0 +1,28 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -25,17 +25,22 @@
+ !.vscode/extensions.json
+ 
+ # misc
++# Maven
++/target
++/log
++
++# Misc
+ /.sass-cache
+ /connect.lock
+ /coverage
+ /libpeerconnection.log
+ npm-debug.log
++yarn-error.log
+ testem.log
+ /typings
+-
+-# e2e
+-/e2e/*.js
+-/e2e/*.map
++/reports
++/src/translations/template.*
++/src/environments/.env.*
+ 
+ # System Files
+ .DS_Store
