@@ -1,5 +1,5 @@
 ** Overwiew
-  [EmailSec](https://github.com/softsky/emailsec) Is a Email Security service for fast notification if person's email is compromised.
+  [[https://github.com/softsky/emailsec][EmailSec]] Is a Email Security service for fast notification if person's email is compromised.
 
 ** Components
 *** Webiste
@@ -7,10 +7,10 @@
    # Website Overwiew
    The website is hosted on github.io (that means that repository name is emailsec.github.io).
    # Techologies
-   - Angular 7
-   - Webpack
-   - 0Auth for Identity Management
-   - Yarn
+   - [[https://angular.io][Angular2]] (v. 7.0.3)
+   - [[https://webpack.js.org][Webpack]
+   - [[auth0.com][Auth0]]
+   - [[yarnpkg.com][Yarn]]
 *** Business Logic
 *** Database
 
