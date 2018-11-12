@@ -1,5 +1,5 @@
 ** Overwiew
-  [[https://github.com/softsky/emailsec][EmailSec]] Is a Email Security service for fast notification if person's email is compromised.
+  [[https://softsky.github.io/emailsec/][EmailSec]] Is a Email Security service for fast notification if person's email is compromised.
 
 ** Components
 *** Webiste
