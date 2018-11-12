@@ -7,8 +7,8 @@
    # Website Overwiew
    The website is hosted on github.io (that means that repository name is emailsec.github.io).
    # Techologies
-   - [[https://angular.io][Angular2]] (v. 7.0.3)
-   - [[https://webpack.js.org][Webpack]
+   - [[https://angular.io][Angular2]]
+   - [[https://webpack.js.org][Webpack]]
    - [[auth0.com][Auth0]]
    - [[yarnpkg.com][Yarn]]
 *** Business Logic
