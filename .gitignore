@@ -9,7 +9,7 @@
 
 # IDEs and editors
 /.idea
-/dev
+/dist
 g.project
 .classpath
 .c9/

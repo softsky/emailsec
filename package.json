@@ -15,7 +15,7 @@
     "docs": "hads ./docs -o",
     "env": "ngx-scripts env npm_package_version",
     "generate": "ng generate",
-    "gh-pages": "npm run build && git add dist && git commit -m \"$(date)\" && git subtree push --prefix dist origin gh-pages"
+    "gh-pages": "npm run build && git add dist -f && git commit -m \"$(date)\";git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "@angular/animations": "^7.0.3",
