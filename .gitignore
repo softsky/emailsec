@@ -9,7 +9,8 @@
 
 # IDEs and editors
 /.idea
-.project
+/dev
+g.project
 .classpath
 .c9/
 *.launch
