@@ -1,13 +1,52 @@
 <div class="container">
   <mat-card>
-    <p>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo"/>
-    </p>
     <mat-card-content>
-      <mat-card-title translate>Hello world !</mat-card-title>
+      <mat-card-title>
+      <i class="material-icons left">alarmt</i>
+      <span translate>What is happening?</span>
+      </mat-card-title>
       <mat-card-subtitle>
-        <app-loader [isLoading]="isLoading" size="1.5"></app-loader>
-        <q [hidden]="isLoading">{{quote}}</q>
+        <small translate>Hackers are hacking websites on daily basis. Sometime huge internet resources, hosting hundreds of millions people accounts get "breached". We morning Dark Net for "breached" databases and then letting people know about that incidents</small>
+      </mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+  <mat-divider></mat-divider>
+
+  <mat-card>
+    <mat-card-content>
+      <mat-card-title>
+      <i class="material-icons left">alarmt</i>
+      <span translate>What is a "breach" and where has the data come from?</span>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <small translate>
+          A "breach" is an incident where data is inadvertently exposed in a vulnerable system, usually due to insufficient access controls or security weaknesses in the software. HIBP aggregates breaches and enables people to assess where their personal data has been exposed.
+
+        </small>
+      </mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+  <mat-divider></mat-divider>
+  <mat-card>
+    <mat-card-content>
+      <mat-card-title>
+        <i class="material-icons">backupt</i>
+        <span translate>Are user passwords stored in this site?</span>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <small translate>When email addresses from a data breach are loaded into the site, no corresponding passwords are loaded with them. Separately to the pwned address search feature, the Pwned Passwords service allows you to check if an individual password has previously been seen in a data breach. No password is stored next to any personally identifiable data (such as an email address) and every password is SHA-1 hashed (read why SHA-1 was chosen in the Pwned Passwords launch blog post.)</small>
+      </mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+  <mat-divider></mat-divider>
+  <mat-card>
+    <mat-card-content>
+      <mat-card-title>
+        <i class="material-icons">assignment_turned_int</i>
+        <span translate>My email was found — does that mean I haven been pwned?</span>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <small translate>Yes and we strongly encourage you to register at our service so we help you prevent that in the future</small>
       </mat-card-subtitle>
     </mat-card-content>
   </mat-card>
