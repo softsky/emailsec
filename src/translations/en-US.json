@@ -1,16 +1,17 @@
 {
-  "APP_NAME": "emailsec",
-  "About": "About",
-  "Hello world !": "Hello world !",
-  "Home": "Home",
-  "Logged in as": "Logged in as",
-  "Login": "Login",
-  "Logout": "Logout",
-  "Password": "Password",
-  "Password is required": "Password is required",
-  "Username": "Username",
-  "Username is required": "Username is required",
-  "Username or password incorrect.": "Username or password incorrect.",
-  "Remember me": "Remember me",
-  "Version": "Version"
+	"A \"breach\" is an incident where data is inadvertently exposed in a vulnerable system, usually due to insufficient access controls or security weaknesses in the software. HIBP aggregates breaches and enables people to assess where their personal data has been exposed.": "A \"breach\" is an incident where data is inadvertently exposed in a vulnerable system, usually due to insufficient access controls or security weaknesses in the software. HIBP aggregates breaches and enables people to assess where their personal data has been exposed.",
+	"APP_NAME": "SOFTSKY",
+	"About": "About",
+	"Are user passwords stored in this site?": "Are user passwords stored in this site?",
+	"Hello world !": "Hello world !",
+	"Home": "Home",
+	"Logged in as": "Logged in as",
+	"Logout": "Logout",
+	"My email was not found — does that mean I haven't been pwned?": "My email was not found — does that mean I haven't been pwned?",
+	"Version": "Version",
+	"What is a \"breach\" and where has the data come from?": "What is a \"breach\" and where has the data come from?",
+	"When email addresses from a data breach are loaded into the site, no corresponding passwords are loaded with them. Separately to the pwned address search feature, the Pwned Passwords service allows you to check if an individual password has previously been seen in a data breach. No password is stored next to any personally identifiable data (such as an email address) and every password is SHA-1 hashed (read why SHA-1 was chosen in the Pwned Passwords launch blog post.)": "When email addresses from a data breach are loaded into the site, no corresponding passwords are loaded with them. Separately to the pwned address search feature, the Pwned Passwords service allows you to check if an individual password has previously been seen in a data breach. No password is stored next to any personally identifiable data (such as an email address) and every password is SHA-1 hashed (read why SHA-1 was chosen in the Pwned Passwords launch blog post.)",
+	"Yes and we strongly encourage you to register at our service so we help you prevent that in the future": "Yes and we strongly encourage you to register at our service so we help you prevent that in the future",
+  "Hackers are hacking websites on daily basis. Sometime huge internet resources, hosting hundreds of millions people accounts get \"breached\". We morning Dark Net for \"breached\" databases and then letting people know about that incidents":"Hackers are hacking websites on daily basis. Sometime huge internet resources, hosting hundreds of millions people accounts get \"breached\". We morning Dark Net for \"breached\" databases and then letting people know about that incidents"
+
 }

@@ -111,7 +111,7 @@ describe('I18nService', () => {
 
     it('should change current language without a region match', () => {
       // Arrange
-      const newLanguage = 'fr-CA';
+      const newLanguage = 'uk-UA';
       i18nService.init(defaultLanguage, supportedLanguages);
 
       // Act
