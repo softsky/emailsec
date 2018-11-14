@@ -16,6 +16,12 @@ import { AboutModule } from './about/about.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { MatButtonModule} from '@angular/material';
+
+import { CallbackComponent } from './callback/callback.component';
+import { AuthService } from './auth/auth.service';
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -30,11 +36,11 @@ import { AppRoutingModule } from './app-routing.module';
     ShellModule,
     HomeModule,
     AboutModule,
+    MatButtonModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent],
-  providers: [
-  ],
+  declarations: [AppComponent, CallbackComponent],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
