@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
-import { QuoteService } from './quote.service';
-
+import { AuthService } from '../auth/auth.service'
+import { QueueService } from './queue.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,16 +10,18 @@ import { QuoteService } from './quote.service';
 })
 export class HomeComponent implements OnInit {
 
-  quote: string;
+  queue: string;
   isLoading: boolean;
 
-  constructor(private quoteService: QuoteService) { }
+  constructor(
+    private auth: AuthService,
+    private queueService: QueueService) { }
 
   ngOnInit() {
     this.isLoading = true;
-    this.quoteService.getRandomQuote({ category: 'dev' })
+    this.queueService.queuePop({name: 'BreachedAcounts'})
       .pipe(finalize(() => { this.isLoading = false; }))
-      .subscribe((quote: string) => { this.quote = quote; });
+      .subscribe((queue: string) => { this.queue = queue; });
   }
 
 }

@@ -6,8 +6,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { HomeComponent } from './home.component';
-import { QuoteService } from './quote.service';
+import { AuthService } from '../auth/auth.service'
+import { QueueService } from './queue.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -15,17 +18,18 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        imports: [
-          BrowserAnimationsModule,
-          FlexLayoutModule,
-          MaterialModule,
-          CoreModule,
-          SharedModule,
-          HttpClientTestingModule
-        ],
-        declarations: [HomeComponent],
-        providers: [QuoteService]
-      })
+      imports: [
+        RouterTestingModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
+        MaterialModule,
+        CoreModule,
+        SharedModule,
+        HttpClientTestingModule
+      ],
+      declarations: [HomeComponent],
+      providers: [QueueService, AuthService]
+    })
       .compileComponents();
   }));
 

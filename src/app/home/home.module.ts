@@ -7,8 +7,10 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
+import { RouterModule } from '@angular/router';
+
 import { HomeComponent } from './home.component';
-import { QuoteService } from './quote.service';
+import { QueueService } from './queue.service';
 
 @NgModule({
   imports: [
@@ -18,13 +20,14 @@ import { QuoteService } from './quote.service';
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    RouterModule
   ],
   declarations: [
     HomeComponent
   ],
   providers: [
-    QuoteService
+    QueueService
   ]
 })
 export class HomeModule { }
