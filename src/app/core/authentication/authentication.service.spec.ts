@@ -54,10 +54,10 @@ describe('AuthenticationService', () => {
       // Assert
       request.subscribe(() => {
         expect(authenticationService.isAuthenticated()).toBe(true);
-        expect(authenticationService.credentials).toBeDefined();
-        expect(authenticationService.credentials).not.toBeNull();
-        expect((<Credentials>authenticationService.credentials).token).toBeDefined();
-        expect((<Credentials>authenticationService.credentials).token).not.toBeNull();
+        expect(authenticationService.session).toBeDefined();
+        expect(authenticationService.session).not.toBeNull();
+        expect((<Credentials>authenticationService.session).token).toBeDefined();
+        expect((<Credentials>authenticationService.session).token).not.toBeNull();
       });
     }));
 
@@ -109,7 +109,7 @@ describe('AuthenticationService', () => {
 
         request.subscribe(() => {
           expect(authenticationService.isAuthenticated()).toBe(false);
-          expect(authenticationService.credentials).toBeNull();
+          expect(authenticationService.session).toBeNull();
           expect(sessionStorage.getItem(sessionKey)).toBeNull();
           expect(localStorage.getItem(sessionKey)).toBeNull();
         });
@@ -134,7 +134,7 @@ describe('AuthenticationService', () => {
 
         request.subscribe(() => {
           expect(authenticationService.isAuthenticated()).toBe(false);
-          expect(authenticationService.credentials).toBeNull();
+          expect(authenticationService.session).toBeNull();
           expect(sessionStorage.getItem(sessionKey)).toBeNull();
           expect(localStorage.getItem(sessionKey)).toBeNull();
         });

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '@app/material.module';
+//import { LoginComponent } from './login/login.component';
 import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
@@ -12,10 +13,10 @@ import { LoaderComponent } from './loader/loader.component';
     CommonModule
   ],
   declarations: [
-    LoaderComponent
+    LoaderComponent, /* LoginComponent*/
   ],
   exports: [
-    LoaderComponent
+    LoaderComponent, /* LoginComponent */
   ]
 })
 export class SharedModule { }

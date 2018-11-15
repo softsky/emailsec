@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { CallbackComponent } from './callback/callback.component';
 
 const routes: Routes = [
-  // Fallback when no prior route is matched
   { path: 'callback', component: CallbackComponent },
+  // Fallback when no prior route is matched
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

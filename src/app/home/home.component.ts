@@ -19,9 +19,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.queueService.queuePop({name: 'BreachedAcounts'})
+    this.queueService.queuePop({queue: 'BreachedAccounts'})
       .pipe(finalize(() => { this.isLoading = false; }))
       .subscribe((queue: string) => { this.queue = queue; });
   }
-
 }

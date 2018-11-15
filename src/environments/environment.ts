@@ -9,7 +9,7 @@ export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
   serverUrl: '/api',
-  defaultLanguage: 'en-US',
+  defaultLanguage: 'uk-UA',
   supportedLanguages: [
     'en-US',
     'uk-UA'

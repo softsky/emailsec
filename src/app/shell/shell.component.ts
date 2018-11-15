@@ -2,7 +2,6 @@ import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ObservableMedia } from '@angular/flex-layout';
-
 import { AuthenticationService, I18nService } from '@app/core';
 
 @Component({
@@ -30,8 +29,7 @@ export class ShellComponent implements OnInit {
   }
 
   get username(): string | null {
-    const credentials = this.authenticationService.credentials;
-    return credentials ? credentials.username : null;
+    return this.authenticationService.session?this.authenticationService.session.username:null;
   }
 
   get languages(): string[] {

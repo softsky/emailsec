@@ -11,12 +11,12 @@
           </button>
           <mat-menu #userMenu="matMenu">
             <mat-list>
-              <mat-list-item>
+              <mat-list-item (click)="auth.login()">
                 <span translate>Logged in as</span>&nbsp;<b>{{username}}</b>
               </mat-list-item>
               <mat-divider></mat-divider>
             </mat-list>
-            <button mat-menu-item (click)="logout()" translate>Logout</button>
+            <button mat-menu-item (click)="auth.logout()" translate>Logout</button>
           </mat-menu>
         </div>
         <div>

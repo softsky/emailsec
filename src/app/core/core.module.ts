@@ -18,7 +18,7 @@ import { CacheInterceptor } from './http/cache.interceptor';
     CommonModule,
     HttpClientModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [
     AuthenticationService,

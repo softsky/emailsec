@@ -34,14 +34,34 @@ export class AuthenticationService {
     redirectUri: AUTH_CONFIG.callbackURL
   });
 
-  private _credentials: Credentials | null;
+  private savedSession: Credentials | null;
 
   constructor() {
     const savedCredentials = sessionStorage.getItem(sessionKey) || localStorage.getItem(sessionKey);
     if (savedCredentials) {
-      this._credentials = JSON.parse(savedCredentials);
+      this.savedSession = JSON.parse(savedCredentials);
     }
   }
+
+  /**
+   * Sets the user session.
+   * The session may be persisted across sessions by setting the `remember` parameter to true.
+   * Otherwise, the session are only persisted for the current session.
+   * @param session The user session.
+   * @param remember True to remember session across sessions.
+   */
+  private setCredentials(session?: Credentials, remember?: boolean) {
+    this.savedSession = session || null;
+
+    if (session) {
+      const storage = remember ? localStorage : sessionStorage;
+      storage.setItem(sessionKey, JSON.stringify(session));
+    } else {
+      sessionStorage.removeItem(sessionKey);
+      localStorage.removeItem(sessionKey);
+    }
+  }
+
 
   /**
    * Authenticates the user.
@@ -73,34 +93,14 @@ export class AuthenticationService {
    * @return True if the user is authenticated.
    */
   isAuthenticated(): boolean {
-    return !!this.credentials;
+    return !!this.session;
   }
 
   /**
    * Gets the user credentials.
    * @return The user credentials or null if the user is not authenticated.
    */
-  get credentials(): Credentials | null {
-    return this._credentials;
+  get session(): Credentials | null {
+    return this.savedSession ;
   }
-
-  /**
-   * Sets the user session.
-   * The session may be persisted across sessions by setting the `remember` parameter to true.
-   * Otherwise, the session are only persisted for the current session.
-   * @param session The user session.
-   * @param remember True to remember session across sessions.
-   */
-  private setCredentials(session?: Credentials, remember?: boolean) {
-    this._credentials = session || null;
-
-    if (session) {
-      const storage = remember ? localStorage : sessionStorage;
-      storage.setItem(sessionKey, JSON.stringify(session));
-    } else {
-      sessionStorage.removeItem(sessionKey);
-      localStorage.removeItem(sessionKey);
-    }
-  }
-
 }
