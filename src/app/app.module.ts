@@ -18,8 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { MatButtonModule} from '@angular/material';
 
+import { AuthenticationService } from './core/authentication/authentication.service';
 import { CallbackComponent } from './callback/callback.component';
-import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -40,7 +40,7 @@ import { AuthService } from './auth/auth.service';
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent, CallbackComponent],
-  providers: [AuthService],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

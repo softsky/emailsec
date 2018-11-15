@@ -9,7 +9,7 @@ import { MaterialModule } from '@app/material.module';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { HomeComponent } from './home.component';
-import { AuthService } from '../auth/auth.service'
+import { AuthenticationService } from '../core/authentication/authentication.service'
 import { QueueService } from './queue.service';
 
 describe('HomeComponent', () => {
@@ -28,7 +28,7 @@ describe('HomeComponent', () => {
         HttpClientTestingModule
       ],
       declarations: [HomeComponent],
-      providers: [QueueService, AuthService]
+      providers: [QueueService, AuthenticationService ]
     })
       .compileComponents();
   }));
