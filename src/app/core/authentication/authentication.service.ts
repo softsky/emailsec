@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { AUTH_CONFIG } from './auth0-variables';
+import { Router } from '@angular/router';
+import * as auth0 from 'auth0-js';
+
+(window as any).global = window;
 
 export interface Credentials {
   // Customize received credentials here
@@ -13,7 +18,7 @@ export interface LoginContext {
   remember?: boolean;
 }
 
-const credentialsKey = 'credentials';
+const sessionKey = 'credentials';
 
 /**
  * Provides a base for authentication workflow.
@@ -22,10 +27,17 @@ const credentialsKey = 'credentials';
 @Injectable()
 export class AuthenticationService {
 
+  auth0 = new auth0.WebAuth({
+    clientID: AUTH_CONFIG.clientID,
+    domain: AUTH_CONFIG.domain,
+    responseType: 'token id_token',
+    redirectUri: AUTH_CONFIG.callbackURL
+  });
+
   private _credentials: Credentials | null;
 
   constructor() {
-    const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
+    const savedCredentials = sessionStorage.getItem(sessionKey) || localStorage.getItem(sessionKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
     }
@@ -36,7 +48,7 @@ export class AuthenticationService {
    * @param context The login parameters.
    * @return The user credentials.
    */
-  login(context: LoginContext): Observable<Credentials> {
+  login(context?: LoginContext): Observable<Credentials> {
     // Replace by proper authentication call
     const data = {
       username: context.username,
@@ -73,21 +85,21 @@ export class AuthenticationService {
   }
 
   /**
-   * Sets the user credentials.
-   * The credentials may be persisted across sessions by setting the `remember` parameter to true.
-   * Otherwise, the credentials are only persisted for the current session.
-   * @param credentials The user credentials.
-   * @param remember True to remember credentials across sessions.
+   * Sets the user session.
+   * The session may be persisted across sessions by setting the `remember` parameter to true.
+   * Otherwise, the session are only persisted for the current session.
+   * @param session The user session.
+   * @param remember True to remember session across sessions.
    */
-  private setCredentials(credentials?: Credentials, remember?: boolean) {
-    this._credentials = credentials || null;
+  private setCredentials(session?: Credentials, remember?: boolean) {
+    this._credentials = session || null;
 
-    if (credentials) {
+    if (session) {
       const storage = remember ? localStorage : sessionStorage;
-      storage.setItem(credentialsKey, JSON.stringify(credentials));
+      storage.setItem(sessionKey, JSON.stringify(session));
     } else {
-      sessionStorage.removeItem(credentialsKey);
-      localStorage.removeItem(credentialsKey);
+      sessionStorage.removeItem(sessionKey);
+      localStorage.removeItem(sessionKey);
     }
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
-import { AuthService } from '../auth/auth.service'
+import { AuthenticationService } from '../core/authentication/authentication.service';
 import { QueueService } from './queue.service';
 @Component({
   selector: 'app-home',
@@ -14,12 +14,12 @@ export class HomeComponent implements OnInit {
   isLoading: boolean;
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthenticationService,
     private queueService: QueueService) { }
 
   ngOnInit() {
     this.isLoading = true;
-    this.queueService.queuePop({name: 'BreachedAcounts'})
+    this.queueService.queuePop({name: 'GeneratedEmails'})
       .pipe(finalize(() => { this.isLoading = false; }))
       .subscribe((queue: string) => { this.queue = queue; });
   }

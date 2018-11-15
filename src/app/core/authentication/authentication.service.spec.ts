@@ -2,7 +2,7 @@ import { TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
 
 import { AuthenticationService, Credentials} from './authentication.service';
 
-const credentialsKey = 'credentials';
+const sessionKey = 'credentials';
 
 describe('AuthenticationService', () => {
   let authenticationService: AuthenticationService;
@@ -21,8 +21,8 @@ describe('AuthenticationService', () => {
 
   afterEach(() => {
     // Cleanup
-    localStorage.removeItem(credentialsKey);
-    sessionStorage.removeItem(credentialsKey);
+    localStorage.removeItem(sessionKey);
+    sessionStorage.removeItem(sessionKey);
   });
 
   describe('login', () => {
@@ -35,9 +35,9 @@ describe('AuthenticationService', () => {
       tick();
 
       // Assert
-      request.subscribe(credentials => {
-        expect(credentials).toBeDefined();
-        expect(credentials.token).toBeDefined();
+      request.subscribe(session => {
+        expect(session).toBeDefined();
+        expect(session.token).toBeDefined();
       });
     }));
 
@@ -71,7 +71,7 @@ describe('AuthenticationService', () => {
 
       // Assert
       request.subscribe(() => {
-        expect(sessionStorage.getItem(credentialsKey)).not.toBeNull();
+        expect(sessionStorage.getItem(sessionKey)).not.toBeNull();
       });
     }));
 
@@ -86,7 +86,7 @@ describe('AuthenticationService', () => {
 
       // Assert
       request.subscribe(() => {
-        expect(localStorage.getItem(credentialsKey)).not.toBeNull();
+        expect(localStorage.getItem(sessionKey)).not.toBeNull();
       });
     }));
   });
@@ -110,8 +110,8 @@ describe('AuthenticationService', () => {
         request.subscribe(() => {
           expect(authenticationService.isAuthenticated()).toBe(false);
           expect(authenticationService.credentials).toBeNull();
-          expect(sessionStorage.getItem(credentialsKey)).toBeNull();
-          expect(localStorage.getItem(credentialsKey)).toBeNull();
+          expect(sessionStorage.getItem(sessionKey)).toBeNull();
+          expect(localStorage.getItem(sessionKey)).toBeNull();
         });
       });
     }));
@@ -135,8 +135,8 @@ describe('AuthenticationService', () => {
         request.subscribe(() => {
           expect(authenticationService.isAuthenticated()).toBe(false);
           expect(authenticationService.credentials).toBeNull();
-          expect(sessionStorage.getItem(credentialsKey)).toBeNull();
-          expect(localStorage.getItem(credentialsKey)).toBeNull();
+          expect(sessionStorage.getItem(sessionKey)).toBeNull();
+          expect(localStorage.getItem(sessionKey)).toBeNull();
         });
       });
     }));
