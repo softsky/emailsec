@@ -23,9 +23,12 @@ export class ShellComponent implements OnInit {
     this.i18nService.language = language;
   }
 
+  login() {
+    this.authenticationService.login();
+  }
+
   logout() {
-    this.authenticationService.logout()
-      .subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
+    this.authenticationService.logout();
   }
 
   get username(): string | null {

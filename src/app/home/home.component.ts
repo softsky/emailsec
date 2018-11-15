@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   isLoading: boolean;
 
   constructor(
-    public auth: AuthenticationService,
+    private authenticationService: AuthenticationService,
     private queueService: QueueService) { }
 
   ngOnInit() {
@@ -22,5 +22,9 @@ export class HomeComponent implements OnInit {
     this.queueService.queuePop({queue: 'BreachedAccounts'})
       .pipe(finalize(() => { this.isLoading = false; }))
       .subscribe((queue: string) => { this.queue = queue; });
+  }
+
+  signup() {
+    this.authenticationService.signup();
   }
 }

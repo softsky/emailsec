@@ -10,6 +10,9 @@ export interface Credentials {
   // Customize received credentials here
   username: string;
   token: string;
+  expiresIn?: number;
+  accessToken?: string;
+  idToken?: string;
 }
 
 export interface LoginContext {
@@ -18,7 +21,7 @@ export interface LoginContext {
   remember?: boolean;
 }
 
-const sessionKey = 'credentials';
+const sessionKey = 'session';
 
 /**
  * Provides a base for authentication workflow.
@@ -36,46 +39,27 @@ export class AuthenticationService {
 
   private savedSession: Credentials | null;
 
-  constructor() {
+  constructor(
+    public router: Router
+  ) {
     const savedCredentials = sessionStorage.getItem(sessionKey) || localStorage.getItem(sessionKey);
     if (savedCredentials) {
       this.savedSession = JSON.parse(savedCredentials);
     }
   }
 
-  /**
-   * Sets the user session.
-   * The session may be persisted across sessions by setting the `remember` parameter to true.
-   * Otherwise, the session are only persisted for the current session.
-   * @param session The user session.
-   * @param remember True to remember session across sessions.
-   */
-  private setCredentials(session?: Credentials, remember?: boolean) {
-    this.savedSession = session || null;
-
-    if (session) {
-      const storage = remember ? localStorage : sessionStorage;
-      storage.setItem(sessionKey, JSON.stringify(session));
-    } else {
-      sessionStorage.removeItem(sessionKey);
-      localStorage.removeItem(sessionKey);
-    }
+  signup(): void {
+    this.auth0.authorize({mode: 'signUp'});
   }
-
-
   /**
    * Authenticates the user.
    * @param context The login parameters.
    * @return The user credentials.
    */
-  login(context?: LoginContext): Observable<Credentials> {
-    // Replace by proper authentication call
-    const data = {
-      username: context.username,
-      token: '123456'
-    };
-    this.setCredentials(data, context.remember);
-    return of(data);
+  login(): Observable<boolean> {
+    // this.setCredentials(data, context.remember);
+    this.auth0.authorize({mode: 'login'});
+    return of(true);
   }
 
   /**
@@ -85,7 +69,26 @@ export class AuthenticationService {
   logout(): Observable<boolean> {
     // Customize credentials invalidation here
     this.setCredentials();
+    // Remove tokens and expiry time from localStorage
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    // Go back to the home route
+    this.router.navigate(['/']);
     return of(true);
+  }
+
+  public handleAuthentication(): void {
+    this.auth0.parseHash((err, authResult: any) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setCredentials(authResult);
+        this.router.navigate(['/home']);
+      } else if (err) {
+        this.router.navigate(['/home']);
+        console.log(err);
+        alert(`Error: ${err.error}. Check the console for further details.`);
+      }
+    });
   }
 
   /**
@@ -102,5 +105,31 @@ export class AuthenticationService {
    */
   get session(): Credentials | null {
     return this.savedSession ;
+  }
+  set session(session: Credentials) {
+    this.savedSession  = session;
+  }
+
+  /**
+   * Sets the user session.
+   * The session may be persisted across sessions by setting the `remember` parameter to true.
+   * Otherwise, the session are only persisted for the current session.
+   * @param session The user session.
+   * @param remember True to remember session across sessions.
+   */
+  private setCredentials(session?: Credentials, remember?: boolean) {
+    this.savedSession = session || null;
+
+    if (session) {
+      const storage = remember ? localStorage : sessionStorage;
+      storage.setItem(sessionKey, JSON.stringify(session));
+      const expiresAt = JSON.stringify((session.expiresIn * 1000) + new Date().getTime());
+      localStorage.setItem('access_token', session.accessToken);
+      localStorage.setItem('id_token', session.idToken);
+      localStorage.setItem('expires_at', expiresAt);
+    } else {
+      sessionStorage.removeItem(sessionKey);
+      localStorage.removeItem(sessionKey);
+    }
   }
 }
